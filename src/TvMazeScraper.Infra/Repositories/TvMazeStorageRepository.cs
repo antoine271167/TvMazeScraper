@@ -21,7 +21,7 @@ namespace TvMazeScraper.Infra.Repositories
 
         public async Task<Show[]> GetShows(int pageIndex, int pageSize)
         {
-            var startRow = (pageIndex-1) * pageSize;
+            var startRow = (pageIndex - 1) * pageSize;
             var dbShows = await _dbContext.ShowsNoTracking.OrderBy(x => x.Id).Skip(startRow).Take(pageSize)
                 .ToArrayAsync();
             return dbShows?.Map<Show[]>();

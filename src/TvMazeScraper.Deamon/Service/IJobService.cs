@@ -1,6 +1,6 @@
 ﻿namespace TvMazeScraper.Deamon.Service
 {
-    public interface IJobService : IService
+    internal interface IJobService : IService
     {
     }
 }

@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace TvMazeScraper.WebApi.Utils
 {
-    public static class EntityMapper
+    internal static class EntityMapper
     {
         public static TTarget Map<TTarget>(this object source)
         {

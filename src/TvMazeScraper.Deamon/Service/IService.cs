@@ -1,6 +1,6 @@
 ﻿namespace TvMazeScraper.Deamon.Service
 {
-    public interface IService
+    internal interface IService
     {
         void Start();
         void Stop();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TvMazeScraper.Application
 {
-    public interface IQueryMessageHandler<TMessage, TResult>
+    public interface IQueryMessageHandler<in TMessage, TResult>
     {
         Task<TResult> HandleAsync(TMessage queryMessage);
     }

@@ -9,7 +9,7 @@ using TvMazeScraper.Application;
 
 namespace TvMazeScraper.Deamon.Service
 {
-    public class JobService : IJobService
+    internal class JobService : IJobService
     {
         public void Start()
         {

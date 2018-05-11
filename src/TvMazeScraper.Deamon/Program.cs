@@ -17,11 +17,9 @@ namespace TvMazeScraper.Deamon
             HostFactory.Run(x =>
             {
                 x.UseUnityContainer(IoCContainerFactory.Create());
-                //x.UseNinject(new IoCModule());
                 x.Service<ServiceManager>(s =>
                 {
                     s.ConstructUsingUnityContainer();
-                    //s.ConstructUsingNinject();
                     s.WhenStarted(tc => tc.Start());
                     s.WhenStopped(tc => tc.Stop());
                 });

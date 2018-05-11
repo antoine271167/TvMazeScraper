@@ -11,9 +11,9 @@ using Unity;
 
 namespace TvMazeScraper.Deamon
 {
-    public static class IoCContainerFactory
+    internal static class IoCContainerFactory
     {
-        public static UnityContainer Create()
+        public static IUnityContainer Create()
         {
             var container = new UnityContainer();
             container.RegisterType<ShowDbContext>();
