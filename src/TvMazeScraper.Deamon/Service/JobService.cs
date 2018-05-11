@@ -3,6 +3,7 @@
 using System;
 using System.Threading;
 using System.Timers;
+using log4net;
 using TvMazeScraper.Application;
 
 #endregion
@@ -11,6 +12,8 @@ namespace TvMazeScraper.Deamon.Service
 {
     internal class JobService : IJobService
     {
+        private readonly ILog _log = LogManager.GetLogger(nameof(JobService));
+
         public void Start()
         {
             _isStopping = false;
@@ -62,10 +65,12 @@ namespace TvMazeScraper.Deamon.Service
             try
             {
                 _getShowsCommandHandler.HandleAsync().Wait();
+                throw new Exception();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                _log.Error(ex);
+                throw;
             }
             finally
             {

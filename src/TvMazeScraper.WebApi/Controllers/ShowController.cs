@@ -1,8 +1,10 @@
 ﻿#region [ Using ]
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using log4net;
 using TvMazeScraper.Application;
 using TvMazeScraper.Application.Query;
 using TvMazeScraper.Infra.Utils;
@@ -15,18 +17,35 @@ namespace TvMazeScraper.WebApi.Controllers
     {
         public async Task<IEnumerable<Models.ShowModel>> Get()
         {
-            var result = await _getShowsQueryHandler.HandleAsync(new ShowQueryMessage {Page = 1, PageSize = 20});
-            return result.Shows?.Map<Models.ShowModel[]>();
+            try
+            {
+                var result = await _getShowsQueryHandler.HandleAsync(new ShowQueryMessage {Page = 1, PageSize = 20});
+                return result.Shows?.Map<Models.ShowModel[]>();
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+                throw;
+            }
         }
 
         public async Task<IEnumerable<Models.ShowModel>> Get(int page, int pageSize)
         {
-            var result =
-                await _getShowsQueryHandler.HandleAsync(new ShowQueryMessage {Page = page, PageSize = pageSize});
-            return result.Shows?.Map<Models.ShowModel[]>();
+            try
+            {
+                var result =
+                    await _getShowsQueryHandler.HandleAsync(new ShowQueryMessage {Page = page, PageSize = pageSize});
+                return result.Shows?.Map<Models.ShowModel[]>();
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+                throw;
+            }
         }
 
         private readonly IQueryMessageHandler<ShowQueryMessage, ShowQueryResult> _getShowsQueryHandler;
+        private readonly ILog _log = LogManager.GetLogger(nameof(ShowController));
 
         public ShowController(IQueryMessageHandler<ShowQueryMessage, ShowQueryResult> getShowsQueryHandler)
         {
