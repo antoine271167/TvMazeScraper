@@ -1,0 +1,2 @@
+﻿CREATE SCHEMA [tvmaze]
+    AUTHORIZATION [dbo];
